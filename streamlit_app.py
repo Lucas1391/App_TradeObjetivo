@@ -4,11 +4,9 @@ import streamlit as st
 import yfinance as yf
 import plotly.graph_objects as go
 import pandas_ta as ta
+from Programa import ativos
 
-acao = pd.read_excel("AÇÕES DO S&P 500.xlsx")
-ativos = acao['Symbol']
-ativos = ativos.tolist()
-nome_empresa = acao['Company'].tolist()
+
 indicadores = ['IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1']
 Indicador = st.sidebar.selectbox('Escolha o indicador desejado :',indicadores)
 ativo = st.sidebar.selectbox("Escolha o ticker desejado :",ativos)
@@ -366,3 +364,8 @@ else:
     # instanciar objeto Figure e plotar o gráfico
     fig = go.Figure(data=data, layout=layout)
     st.plotly_chart(fig, width=300, height=300)
+
+
+
+
+
