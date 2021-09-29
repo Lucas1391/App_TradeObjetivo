@@ -1,3 +1,6 @@
-altair
+yfinance
 pandas
+numpy
+plotly
 streamlit
+pandas_ta
