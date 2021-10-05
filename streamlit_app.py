@@ -6,8 +6,8 @@ import plotly.graph_objects as go
 import pandas_ta as ta
 from PIL import Image
 
-#image = Image.open(r"C:\Users\Lenovo\Pictures\TRADE.png")
-#st.image(image,width=500)
+image = Image.open("TRADE.png")
+st.image(image,width=100)
 
 st.title("APP GRÁFICO TRADEOBJETIVO")
 indicadores = ['IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1']
