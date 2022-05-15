@@ -20,9 +20,10 @@ indicadores = ['IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1']
 Indicador = st.sidebar.selectbox('Escolha o indicador desejado :',indicadores)
 #Digitar o ativo desejado
 ativo = st.sidebar.text_input("Digite o ativo desejado : ")
-ativo = ativo + str(".SA")
+
 if ativo:
     #Carregando Data Frame
+    ativo = ativo + str(".SA")
     df = yf.download(ativo, period='60d')
     #Setup IFR2
     if Indicador == indicadores[0]:
