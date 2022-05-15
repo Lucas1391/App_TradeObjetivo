@@ -49,7 +49,7 @@ if ativo:
             'type': 'scatter',
             'mode': 'lines',
             'line': {
-                'width':1,
+                'width':2,
                 'color': 'white'
             },
             'name': 'Highest2'
@@ -62,7 +62,7 @@ if ativo:
             'mode': 'markers + text',
             'text': "↑",
             'line': {
-                'width':1,
+                'width':2,
                 'color': 'white'
             },
             'name': 'Buy'
@@ -75,7 +75,7 @@ if ativo:
             'mode': 'markers + text',
             'text':"↓",
             'line': {
-                'width': 1,
+                'width': 2,
                 'color': 'blue'
             },
             'name': 'Sell'
@@ -113,7 +113,7 @@ if ativo:
             'type': 'scatter',
             'mode': 'lines',
             'line': {
-                'width': 1,
+                'width': 2,
                 'color': 'red'
             },
             'name': 'Nível sobrecomprado'
