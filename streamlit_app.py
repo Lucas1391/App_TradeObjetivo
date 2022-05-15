@@ -15,7 +15,7 @@ st.image(image,width=200)
 #Iniciando APP
 st.title("APP GRÁFICO TRADEOBJETIVO")
 #Indicadores disponíveis
-indicadores = ['IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1','STOP ATR']
+indicadores = ['IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1']
 #Indicador para o usuário selecionar
 Indicador = st.sidebar.selectbox('Escolha o indicador desejado :',indicadores)
 #Digitar o ativo desejado
@@ -28,8 +28,8 @@ if ativo:
         df['IFR2'] = ta.rsi(df['Close'],length=2)
         df['Highest'] = df['High'].rolling(2).max()
         df['Highest'] = df['Highest'].shift(1)
-        df['Buy'] = np.where(df["IFR2"] < 25.00, df['Close'], np.nan)
-        df['Sell'] = np.where(df['High'] > df['Highest'],df['Highest'] ,np.nan)
+        df['Buy'] = np.where((df["IFR2"].shift(1) > 25.00)&(df["IFR2"] < 25.00), df['Close'], np.nan)
+        df['Sell'] = np.where((df['High'].shift(1) < df['Highest'].shift(1))&(df['High'] > df['Highest']),df['Highest'] ,np.nan)
         df['parametro'] = 25.00
         #gráfico candlestick
         trace1 = {
