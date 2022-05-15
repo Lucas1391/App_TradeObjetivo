@@ -62,7 +62,7 @@ if ativo:
             'mode': 'markers + text',
             'text': "↑",
             'line': {
-                'width':2,
+                'width':1,
                 'color': 'white'
             },
             'name': 'Buy'
@@ -75,7 +75,7 @@ if ativo:
             'mode': 'markers + text',
             'text':"↓",
             'line': {
-                'width': 2,
+                'width': 1,
                 'color': 'blue'
             },
             'name': 'Sell'
@@ -138,8 +138,8 @@ if ativo:
         df['Avg_Low3'] = df['Avg_Low3'].shift(1)
         df['Avg_High3'] = df['High'].rolling(3).mean()
         df['Avg_High3'] = df['Avg_High3'].shift(1)
-        df['Buy'] = np.where(df["Close"] < df["Avg_Low3"] , df['Close'] ,np.nan)
-        df['Sell'] = np.where(df["Close"] > df["Avg_High3"], df["Close"] ,np.nan)
+        df['Buy'] = np.where((df["Avg_Low3"].shift(1) < df["Close"].shift(1))&(df["Close"] < df["Avg_Low3"]),df['Close'] ,np.nan)
+        df['Sell'] = np.where((df["Close"].shift(1) < df["Avg_High3"].shift(1))&(df["Avg_High3"] < df["Close"].shift(1)), df["Close"] ,np.nan)
         # gráfico candlestick
         trace1 = {
             'x': df.index,
@@ -221,7 +221,7 @@ if ativo:
             df['Highest 20'] = df['Highest 20'].shift(1)
             df['Lowest 10'] = df['Low'].rolling(10).min()
             df['Lowest 10'] = df['Lowest 10'].shift(1)
-            df['Buy'] = np.where(df["Close"] > df["Highest 20"], df['Close'], np.nan)
+            df['Buy'] = np.where((df["Highest 20"].shift(1) < df["Close"].shift(1))&((df["Close"]<df["Highest 20"]) > , df['Close'], np.nan)
             df['Sell'] = np.where(df["Close"] < df["Lowest 10"], df["Close"], np.nan)
 
             #Gráfico candlestick
