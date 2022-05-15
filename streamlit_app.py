@@ -50,7 +50,7 @@ if ativo:
             'mode': 'lines',
             'line': {
                 'width':1,
-                'color': 'black'
+                'color': 'white'
             },
             'name': 'Highest2'
         }
@@ -63,8 +63,7 @@ if ativo:
             'text': "↑",
             'line': {
                 'width':1,
-                'color': 'black'
-
+                'color': 'white'
             },
             'name': 'Buy'
         }
