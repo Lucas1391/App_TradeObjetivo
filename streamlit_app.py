@@ -221,7 +221,7 @@ if ativo:
             df['Highest 20'] = df['Highest 20'].shift(1)
             df['Lowest 10'] = df['Low'].rolling(10).min()
             df['Lowest 10'] = df['Lowest 10'].shift(1)
-            df['Buy'] = np.where((df["Highest 20"].shift(1) < df["Close"].shift(1))&((df["Close"]<df["Highest 20"]) > , df['Close'], np.nan)
+            df['Buy'] = np.where((df["Highest 20"].shift(1) < df["Close"].shift(1))&((df["Close"]<df["Highest 20"]) ,df['Close'], np.nan)
             df['Sell'] = np.where(df["Close"] < df["Lowest 10"], df["Close"], np.nan)
 
             #Gráfico candlestick
