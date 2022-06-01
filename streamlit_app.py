@@ -11,7 +11,7 @@ from PIL import Image
 #Carregando Logomarca
 image = Image.open("TRADE.png")
 #Abrindo logomarca no Streamlit
-st.image(image,width=200)
+#st.image(image,width=200)
 #Iniciando APP
 st.title("APP GRÁFICO TRADEOBJETIVO")
 #Indicadores disponíveis
@@ -21,6 +21,47 @@ Indicador = st.sidebar.selectbox('Escolha o indicador desejado :',indicadores)
 #Digitar o ativo desejado
 ativo = st.sidebar.text_input("Digite o ativo desejado : ")
 
+def Operacoes(n,df):
+    resultado_compras = []
+    #listas de vendas
+    resultado_vendas=[]
+    tam = len(df)
+    #parametro boleano para não comprar duas veses seguidas
+    flag_compra = False
+    #marcação do ultima dia compra
+    dia_ultima_compra=0
+
+    for i in range(20,tam):
+        if (podeComprar(i,df)) and (not flag_compra):
+            linha = [df.index[i],df['Close'][i]]
+            resultado_compras.append(linha)
+            flag_compra = True
+            dia_ultima_compra=i
+          #lista de vendas 
+        elif (podeVender(i,df)) and (flag_compra):
+            linha1 = [df.index[i],df['Close'][i]]
+            resultado_vendas.append(linha1)
+            flag_compra = False  
+    resultado_compras = pd.DataFrame(resultado_compras,columns = ["Data","Price_Buy"])
+    resultado_vendas = pd.DataFrame(resultado_vendas,columns = ["Data","Price_Sell"])
+    compras = resultado_compras['Price_Buy'].tolist()
+    vendas = resultado_vendas['Price_Sell'].tolist()
+    lista_compras = []
+    lista_vendas = []
+    for i in range(0,len(df)):
+        if (df['Close'][i] in compras):
+            lista_compras.append(df['Close'][i])
+        else:
+            lista_compras.append(np.NaN)
+    for j in range(0,len(df)):
+        if (df['Close'][j] in vendas):
+            lista_vendas.append(df['Close'][j])
+        else:
+            lista_vendas.append(np.NaN)
+
+    df['Buy'] = lista_compras
+    df['Sell'] = lista_vendas
+    return df
 if ativo:
     #Carregando Data Frame
     ativo = ativo + str(".SA")
@@ -30,8 +71,18 @@ if ativo:
         df['IFR2'] = ta.rsi(df['Close'],length=2)
         df['Highest'] = df['High'].rolling(2).max()
         df['Highest'] = df['Highest'].shift(1)
-        df['Buy'] = np.where((df["IFR2"].shift(1) > 25.00)&(df["IFR2"] < 25.00), df['Close'], np.nan)
-        df['Sell'] = np.where((df['High'].shift(1) < df['Highest'].shift(1))&(df['High'] > df['Highest']),df['Highest'] ,np.nan)
+        #Definindo função para compras 
+        def podeComprar(i,df):
+            if (df['IFR2'][i] < 25.00):
+                return True
+            return False
+          #Definindo função para vender
+        def podeVender(i,df):
+            if (df['Highest'][i] < df['close'][i]):
+                return True
+            return False
+        
+        def Operacoes(2,df)
         df['parametro'] = 25.00
         #gráfico candlestick
         trace1 = {
