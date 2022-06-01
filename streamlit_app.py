@@ -20,7 +20,7 @@ indicadores = ['IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1']
 Indicador = st.sidebar.selectbox('Escolha o indicador desejado :',indicadores)
 #Digitar o ativo desejado
 ativo = st.sidebar.text_input("Digite o ativo desejado : ")
-
+#============================================================================FUNÇAO OPERAÇÕES========================================================================
 def Operacoes(n,df):
     resultado_compras = []
     #listas de vendas
@@ -61,6 +61,7 @@ def Operacoes(n,df):
     df['Buy'] = lista_compras
     df['Sell'] = lista_vendas
     return df
+#===================================================================================INICIO APLICATIVO============================================================
 if ativo:
     #Carregando Data Frame
     ativo = ativo + str(".SA")
@@ -147,6 +148,7 @@ if ativo:
         fig = go.Figure(data=data, layout=layout)
         st.plotly_chart(fig, width=800, height=800)
         #Indicador IFR2
+        ativo = ativo.replace('.SA','')
         trace5 = {
             'x': df.index,
             'y': df['IFR2'],
