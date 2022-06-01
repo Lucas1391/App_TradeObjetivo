@@ -61,6 +61,11 @@ def Operacoes(n,df):
     df['Buy'] = lista_compras
     df['Sell'] = lista_vendas
     return df
+#=====================================FUNÇÃO PARA RETIRAR .SA==============================================================================================
+def Converter(a,b)
+    for i in range(0,len(b)):
+        a = a.replace(b[i],"")
+    return a
 #===================================================================================INICIO APLICATIVO============================================================
 if ativo:
     #Carregando Data Frame
@@ -148,7 +153,8 @@ if ativo:
         fig = go.Figure(data=data, layout=layout)
         st.plotly_chart(fig, width=800, height=800)
         #Indicador IFR2
-        ativo = ativo.str.replace('.SA','')
+       
+        Converter(ativo,".SA")
         trace5 = {
             'x': df.index,
             'y': df['IFR2'],
