@@ -77,7 +77,7 @@ if ativo:
             return False
           #Definindo função para vender
         def podeVender(i,df):
-            if (df['Highest'][i] < df['close'][i]):
+            if (df['Highest'][i] < df['Close'][i]):
                 return True
             return False
         
