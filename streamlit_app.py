@@ -87,6 +87,7 @@ if ativo:
                 return True
             return False
         
+        Converter(ativo,".SA")
         Operacoes(2,df)
         df['parametro'] = 25.00
         #gráfico candlestick
@@ -154,7 +155,7 @@ if ativo:
         st.plotly_chart(fig, width=800, height=800)
         #Indicador IFR2
        
-        Converter(ativo,".SA")
+       
         trace5 = {
             'x': df.index,
             'y': df['IFR2'],
