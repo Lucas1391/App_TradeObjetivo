@@ -148,7 +148,7 @@ if ativo:
         fig = go.Figure(data=data, layout=layout)
         st.plotly_chart(fig, width=800, height=800)
         #Indicador IFR2
-        ativo = ativo.replace('.SA','')
+        ativo = ativo.str.replace('.SA','')
         trace5 = {
             'x': df.index,
             'y': df['IFR2'],
