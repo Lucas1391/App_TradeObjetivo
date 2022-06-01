@@ -61,11 +61,7 @@ def Operacoes(n,df):
     df['Buy'] = lista_compras
     df['Sell'] = lista_vendas
     return df
-#=====================================FUNÇÃO PARA RETIRAR .SA==============================================================================================
-def Converter(a,b):
-    for i in range(0,len(b)):
-        a = a.replace(b[i],"")
-    return a
+
 #===================================================================================INICIO APLICATIVO============================================================
 if ativo:
     #Carregando Data Frame
@@ -87,7 +83,8 @@ if ativo:
                 return True
             return False
         
-        Converter(ativo,".SA")
+        b = ".SA"
+        ativo = ativo.replace(".SA","")
         Operacoes(2,df)
         df['parametro'] = 25.00
         #gráfico candlestick
