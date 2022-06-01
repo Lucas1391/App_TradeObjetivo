@@ -24,14 +24,13 @@ ativo = st.sidebar.text_input("Digite o ativo desejado : ")
 def Operacoes(n,df):
     resultado_compras = []
     #listas de vendas
-    resultado_vendas=[]
+    resultado_vendas = []
     tam = len(df)
     #parametro boleano para não comprar duas veses seguidas
     flag_compra = False
     #marcação do ultima dia compra
-    dia_ultima_compra=0
-
-    for i in range(20,tam):
+    dia_ultima_compra = 0
+    for i in range(n,tam):
         if (podeComprar(i,df)) and (not flag_compra):
             linha = [df.index[i],df['Close'][i]]
             resultado_compras.append(linha)
@@ -82,7 +81,7 @@ if ativo:
                 return True
             return False
         
-        def Operacoes(2,df)
+        Operacoes(2,df)
         df['parametro'] = 25.00
         #gráfico candlestick
         trace1 = {
