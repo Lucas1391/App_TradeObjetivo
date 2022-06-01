@@ -62,7 +62,7 @@ def Operacoes(n,df):
     df['Sell'] = lista_vendas
     return df
 #=====================================FUNÇÃO PARA RETIRAR .SA==============================================================================================
-def Converter(a,b)
+def Converter(a,b):
     for i in range(0,len(b)):
         a = a.replace(b[i],"")
     return a
