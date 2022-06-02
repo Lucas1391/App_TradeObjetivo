@@ -477,12 +477,12 @@ if ativo:
                     SuperTrend.append(df['Stop_Atr_Donw'][i])
             df['SuperTrend'] = SuperTrend
             def podeComprar(i,dados):
-                if (dados['Close'][i-1] < df['Stop_Atr_Upper'][indice-2])and(df['Stop_Atr_Upper'][i-1]<dados['Close'][i]):
+                if (dados['Close'][i-1] < df['Stop_Atr_Upper'][i-2])and(df['Stop_Atr_Upper'][i-1]<dados['Close'][i]):
                     return True
                 return False
             #Definindo função para vender
             def podeVender(i,dados):
-                if (dados['Stop_Atr_Donw'][i][indice-2]<dados['Close'][indice-1])and(dados['Close'][indice]<(dados['Stop_Atr_Donw'][i][indice-1]):
+                if (dados['Stop_Atr_Donw'][i-2]<dados['Close'][i-1])and(dados['Close'][i]<(dados['Stop_Atr_Donw'][i-1]):
                     return True
                 return False
            
