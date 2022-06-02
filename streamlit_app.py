@@ -15,7 +15,7 @@ image = Image.open("TRADE.png")
 #Iniciando APP
 st.title("APP GRÁFICO TRADEOBJETIVO")
 #Indicadores disponíveis
-indicadores = ['IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1']
+indicadores = ['IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1',"SUPERTREND"]
 #Indicador para o usuário selecionar
 Indicador = st.sidebar.selectbox('Escolha o indicador desejado :',indicadores)
 #Digitar o ativo desejado
@@ -390,8 +390,8 @@ if ativo:
                     return True
                 return False
             
-        ativo = ativo.replace(".SA","")
-        Operacoes(9,df)
+            ativo = ativo.replace(".SA","")
+            Operacoes(9,df)
         
             #Gráfico candlestick
             trace1 = {
