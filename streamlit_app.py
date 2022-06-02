@@ -66,7 +66,7 @@ def Operacoes(n,df):
 if ativo:
     #Carregando Data Frame
     ativo = ativo + str(".SA")
-    df = yf.download(ativo, period='60d')
+    df = yf.download(ativo, period='30d')
     #Setup IFR2
     if Indicador == indicadores[0]:
         df['IFR2'] = ta.rsi(df['Close'],length=2)
@@ -117,7 +117,7 @@ if ativo:
             'mode': 'markers + text',
             'text': "↑",
             'line': {
-                'width':2,
+                'width':1,
                 'color': 'white'
             },
             'name': 'Buy'
@@ -130,7 +130,7 @@ if ativo:
             'mode': 'markers + text',
             'text':"↓",
             'line': {
-                'width': 2,
+                'width': 1,
                 'color': 'blue'
             },
             'name': 'Sell'
@@ -344,7 +344,7 @@ if ativo:
                 'mode': 'markers + text',
                 'text':"↑",
                 'line': {
-                    'width': 2,
+                    'width': 1,
                     'color': 'blue'
                 },
                 'name': 'Buy'
@@ -357,7 +357,7 @@ if ativo:
                 'mode': 'markers + text',
                 'text':"↓",
                 'line': {
-                    'width': 2,
+                    'width': 1,
                     'color': 'black'
                 },
                 'name': 'Sell'
