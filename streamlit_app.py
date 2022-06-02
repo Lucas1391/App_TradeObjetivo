@@ -290,12 +290,12 @@ if ativo:
             df['Lowest 10'] = df['Low'].rolling(10).min()
             df['Lowest 10'] = df['Lowest 10'].shift(1)
             def podeComprar(indice, dados):
-                if (dados['avg_hight2'][indice-1] < dados['Close'][indice]):
+                if (dados['Highest 20'][indice] < dados['Close'][indice]):
                     return True
                 return False
             #Definindo função para vender
             def podeVender(indice, dados):
-                if (dados['Close'][indice] < dados['avg_lowest2'][indice-1]):
+                if (dados['Close'][indice] < dados['Lowest 10'][indice]):
                     return True
                 return False
             
@@ -470,7 +470,7 @@ if ativo:
             df['Stop_Atr_Upper'] = df['HL'] + 3*df['atr']
             df['Stop_Atr_Donw'] = df['HL'] - 3*df['atr']
             SuperTrend = []
-            for i in range(1,df):
+            for i in range(1,len(df)):
                 if df['Close'][i] < df['Stop_Atr_Upper'][i]:
                     SuperTrend.append(df['Stop_Atr_Upper'][i])
                 elif df['Stop_Atr_Upper'][i] < df['Close'][i]:
