@@ -470,12 +470,12 @@ if ativo:
             df['Stop_Atr_Upper'] = df['HL'] + 3*df['atr']
             df['Stop_Atr_Donw'] = df['HL'] - 3*df['atr']
             SuperTrend = []
-            for i in range(1,len(df)):
+            for i in range(0,len(df)):
                 if df['Close'][i] < df['Stop_Atr_Upper'][i]:
                     SuperTrend.append(df['Stop_Atr_Upper'][i])
                 elif df['Stop_Atr_Upper'][i] < df['Close'][i]:
                     SuperTrend.append(df['Stop_Atr_Donw'][i])
-            df['SuperTrend'] = [SuperTrend]
+        
             def podeComprar(i,dados):
                 if (dados['Close'][i-1] < df['Stop_Atr_Upper'][i-2])and(df['Stop_Atr_Upper'][i-1]<dados['Close'][i]):
                     return True
@@ -503,7 +503,7 @@ if ativo:
             # Máxima dos 2 últimos dias
             trace2 = {
                 'x': df.index,
-                'y': df['SuperTrend'],
+                'y': SuperTrend,
                 'type': 'scatter',
                 'mode': 'lines',
                 'line': {
