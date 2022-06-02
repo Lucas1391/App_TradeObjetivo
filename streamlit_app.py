@@ -83,7 +83,6 @@ if ativo:
                 return True
             return False
         
-        b = ".SA"
         ativo = ativo.replace(".SA","")
         Operacoes(2,df)
         df['parametro'] = 25.00
@@ -118,7 +117,7 @@ if ativo:
             'mode': 'markers + text',
             'text': "↑",
             'line': {
-                'width':1,
+                'width':2,
                 'color': 'white'
             },
             'name': 'Buy'
@@ -131,7 +130,7 @@ if ativo:
             'mode': 'markers + text',
             'text':"↓",
             'line': {
-                'width': 1,
+                'width': 2,
                 'color': 'blue'
             },
             'name': 'Sell'
@@ -189,15 +188,25 @@ if ativo:
 
         fig_1 = go.Figure(data=data_1, layout=layout_1)
         st.plotly_chart(fig_1,width=600, height=600)
-
+ #===========================================================================================================================================================       
     #Média das 3 máximas e mínimas
     elif Indicador == indicadores[1]:
         df['Avg_Low3'] = df['Low'].rolling(3).mean()
         df['Avg_Low3'] = df['Avg_Low3'].shift(1)
         df['Avg_High3'] = df['High'].rolling(3).mean()
         df['Avg_High3'] = df['Avg_High3'].shift(1)
-        df['Buy'] = np.where((df["Avg_Low3"].shift(1) < df["Close"].shift(1))&(df["Close"] < df["Avg_Low3"]),df['Close'] ,np.nan)
-        df['Sell'] = np.where((df["Close"].shift(1) < df["Avg_High3"].shift(1))&(df["Avg_High3"] < df["Close"].shift(1)), df["Close"] ,np.nan)
+        def podeComprar(indice, dados):
+            if (dados['Close'][indice] < dados['Avg_Low3'][indice]):
+                return True
+            return False
+        #Definindo função para vender
+        def podeVender(indice, dados):
+            if (dados['Avg_High3'][indice] < dados['Close'][indice]):
+                return True
+            return False
+        
+        ativo = ativo.replace(".SA","")
+        Operacoes(3,df)
         # gráfico candlestick
         trace1 = {
             'x': df.index,
@@ -273,15 +282,25 @@ if ativo:
         #instanciar objeto Figure e plotar o gráfico
         fig = go.Figure(data=data, layout=layout)
         st.plotly_chart (fig,width = 300,height=300)
+  #==============================================================================================================================================================
     #Setup Tutle 20-10
     elif Indicador == indicadores[2]:
             df['Highest 20'] = df['High'].rolling(20).max()
             df['Highest 20'] = df['Highest 20'].shift(1)
             df['Lowest 10'] = df['Low'].rolling(10).min()
             df['Lowest 10'] = df['Lowest 10'].shift(1)
-            df['Buy'] = np.where((df["Highest 20"].shift(1) < df["Close"].shift(1))&(df["Close"]<df["Highest 20"]),df['Close'], np.nan)
-            df['Sell'] = np.where(( df["Lowest 10"].shift(1) < df["Close"].shift(1))&(df["Close"]<df["Lowest 10"] ),df["Close"], np.nan)
-
+            def podeComprar(indice, dados):
+                if (dados['avg_hight2'][indice-1] < dados['Close'][indice]):
+                    return True
+                return False
+            #Definindo função para vender
+            def podeVender(indice, dados):
+                if (dados['Close'][indice] < dados['avg_lowest2'][indice-1]):
+                    return True
+                return False
+            
+            ativo = ativo.replace(".SA","")
+            Operacoes(20,df)
             #Gráfico candlestick
             trace1 = {
                 'x': df.index,
@@ -361,8 +380,19 @@ if ativo:
             #Média de 9.1
             df['avg_exp 9'] = df['Close'].ewm(span=9, min_periods=9).mean()
             df['avg_exp 9'] = df['avg_exp 9'].shift(1)
-            df['Buy'] = np.where(df["Close"] > df["avg_exp 9"], df['Close'], np.nan)
-            df['Sell'] = np.where(df["Close"] < df["avg_exp 9"], df["Close"], np.nan)
+            def podeComprar(indice, dados):
+                if (dados['Close'][indice] < dados['avg_exp 9'][indice]):
+                    return True
+                return False
+            #Definindo função para vender
+            def podeVender(indice, dados):
+                if (dados['avg_exp 9'][indice] < dados['Close'][indice]):
+                    return True
+                return False
+            
+        ativo = ativo.replace(".SA","")
+        Operacoes(9,df)
+        
             #Gráfico candlestick
             trace1 = {
                 'x': df.index,
@@ -426,27 +456,40 @@ if ativo:
             # instanciar objeto Figure e plotar o gráfico
             fig = go.Figure(data=data, layout=layout)
             st.plotly_chart(fig, width=300, height=300)
+    
     #Stop Atr
     else:
-            df['high - low'] = df['High'] - df['Low']
-            df['Close_1'] = df['Close'].shift()
-            df['High - Close_1'] = abs(df['High'] - df['Close_1'])
-            df['Low - Close_1'] = abs(df['Low'] - df['Close_1'])
-            df['true range'] = df[['high - low', 'High - Close_1', 'Low - Close_1']].max(axis=1)
-            df['ATR'] = df['true range'].rolling(10).mean()
-            df['ATR_1'] = df['ATR'].shift()
-            df['STOP ATR'] = df['Close_1'] - 2 * df['ATR_1']
-            i = len(df)
-            Stop_Atr_2 = df['STOP ATR'].iloc[i-2]
-            Stop_Atr_1 = df['STOP ATR'].iloc[i-1]
-            #Fechamento anterior
-            fechamento_anterior = df['Close'].iloc[i-1]
-            # ALOCANDO VALOR DE FECHAMENTO ATUAL
-            fechamento_atual = df['Close'].iloc[-1]
-
-            df['Buy'] = np.where((fechamento_anterior < Stop_Atr_2) and (Stop_Atr_1 < fechamento_atual),df['Close'],np.nan)
-            df['Sell'] = np.where((Stop_Atr_2 < fechamento_anterior) and (fechamento_atual < Stop_Atr_1),df["Close"],np.nan)
-
+            #Cálculo do indicador Open-Atr
+            high_low = df['high'] - df['low']
+            high_close = np.abs(df['high'] - df['close'].shift())
+            low_close = np.abs(df['low'] - df['close'].shift())
+            ranges = pd.concat([high_low, high_close, low_close], axis=1)
+            true_range = np.max(ranges, axis=1)
+            df['atr'] = (true_range.rolling(10).sum())/10.00
+            df['HL'] = (df['Low']+df['High'])/2.00
+            df['Stop_Atr_Upper'] = df['HL'] + 3*df['atr']
+            df['Stop_Atr_Donw'] = df['HL'] - 3*df['atr']
+            def SuperTrend(df):
+                for i in range(1,df):
+                    if df['Close'][i] < df['Stop_Atr_Upper'][i]:
+                        df['SuperTrend'][i] = df['Stop_Atr_Upper'][i]
+                    elif < df['Stop_Atr_Upper'][i] < df['Close'][i]:
+                        df['SuperTrend'][i] = df['Stop_Atr_Donw']
+                 return df
+            df = SuperTrend(df)
+            def podeComprar(i,dados):
+                if (dados['Close'][i-1] < df['Stop_Atr_Upper'][indice-2])and(df['Stop_Atr_Upper'][i-1]<dados['Close'][i]):
+                    return True
+                return False
+            #Definindo função para vender
+            def podeVender(i,dados):
+                if (df['Stop_Atr_Donw'][i][indice-2]<dados['Close'][indice-1])and(dados['Close'][indice]<(df['Stop_Atr_Donw'][i][indice-1]):
+                    return True
+                return False
+           
+            ativo = ativo.replace(".SA","")
+            Operacoes(12,df)
+           
             # gráfico candlestick
             trace1 = {
                 'x': df.index,
@@ -461,14 +504,14 @@ if ativo:
             # Máxima dos 2 últimos dias
             trace2 = {
                 'x': df.index,
-                'y': df['STOP ATR'],
+                'y': df['SuperTrend'],
                 'type': 'scatter',
                 'mode': 'lines',
                 'line': {
                     'width': 2,
                     'color': 'blue'
                 },
-                'name': 'STOP ATR'
+                'name': 'SUPERTREND'
             }
             # Sinal de Compra
             trace3 = {
