@@ -473,7 +473,7 @@ if ativo:
                 for i in range(1,df):
                     if df['Close'][i] < df['Stop_Atr_Upper'][i]:
                         df['SuperTrend'][i] = df['Stop_Atr_Upper'][i]
-                    elif < df['Stop_Atr_Upper'][i] < df['Close'][i]:
+                    elif df['Stop_Atr_Upper'][i] < df['Close'][i]:
                         df['SuperTrend'][i] = df['Stop_Atr_Donw']
                  return df
             df = SuperTrend(df)
