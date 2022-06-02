@@ -482,7 +482,7 @@ if ativo:
                 return False
             #Definindo função para vender
             def podeVender(i,dados):
-                if (df['Stop_Atr_Donw'][i][indice-2]<dados['Close'][indice-1])and(dados['Close'][indice]<(df['Stop_Atr_Donw'][i][indice-1]):
+                if (dados['Stop_Atr_Donw'][i][indice-2]<dados['Close'][indice-1])and(dados['Close'][indice]<(dados['Stop_Atr_Donw'][i][indice-1]):
                     return True
                 return False
            
