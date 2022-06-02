@@ -469,15 +469,13 @@ if ativo:
             df['HL'] = (df['Low']+df['High'])/2.00
             df['Stop_Atr_Upper'] = df['HL'] + 3*df['atr']
             df['Stop_Atr_Donw'] = df['HL'] - 3*df['atr']
-            def SuperTrend(df):
-                SuperTrend = []
-                for i in range(1,df):
-                    if df['Close'][i] < df['Stop_Atr_Upper'][i]:
-                        SuperTrend.append(df['Stop_Atr_Upper'][i])
-                    elif df['Stop_Atr_Upper'][i] < df['Close'][i]:
-                        SuperTrend.append(df['Stop_Atr_Donw'][i])
-                 return  SuperTrend
-            df['SuperTrend'] = SuperTrend(df)
+            SuperTrend = []
+            for i in range(1,df):
+                if df['Close'][i] < df['Stop_Atr_Upper'][i]:
+                    SuperTrend.append(df['Stop_Atr_Upper'][i])
+                elif df['Stop_Atr_Upper'][i] < df['Close'][i]:
+                    SuperTrend.append(df['Stop_Atr_Donw'][i])
+            df['SuperTrend'] = SuperTrend
             def podeComprar(i,dados):
                 if (dados['Close'][i-1] < df['Stop_Atr_Upper'][indice-2])and(df['Stop_Atr_Upper'][i-1]<dados['Close'][i]):
                     return True
