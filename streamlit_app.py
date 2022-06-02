@@ -238,7 +238,7 @@ if ativo:
             'mode': 'lines',
             'line': {
                 'width': 1,
-                'color': 'black'
+                'color': 'yellow'
             },
             'name': 'Média (3 Max)'
         }
@@ -251,7 +251,7 @@ if ativo:
             'text': '↑',
             'line': {
                 'width': 2,
-                'color': 'black'
+                'color': 'green'
             },
             'name': 'Buy'
         }
