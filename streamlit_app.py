@@ -475,7 +475,7 @@ if ativo:
                         df['SuperTrend'][i] = df['Stop_Atr_Upper'][i]
                     elif df['Stop_Atr_Upper'][i] < df['Close'][i]:
                         df['SuperTrend'][i] = df['Stop_Atr_Donw']
-                 return df
+                 return df['SuperTrend']
             df = SuperTrend(df)
             def podeComprar(i,dados):
                 if (dados['Close'][i-1] < df['Stop_Atr_Upper'][indice-2])and(df['Stop_Atr_Upper'][i-1]<dados['Close'][i]):
