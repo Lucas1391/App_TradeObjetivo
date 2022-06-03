@@ -488,7 +488,7 @@ if ativo:
             # Máxima dos 2 últimos dias
             trace2 = {
                 'x': df.index,
-                'y': SuperTrend,
+                'y': df['ST'],
                 'type': 'scatter',
                 'mode': 'lines',
                 'line': {
