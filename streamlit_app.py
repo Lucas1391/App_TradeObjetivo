@@ -15,7 +15,7 @@ image = Image.open("TRADE.png")
 #Iniciando APP
 st.title("APP GRÁFICO TRADEOBJETIVO")
 #Indicadores disponíveis
-indicadores = ['IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1',"SUPERTREND"]
+indicadores = ['IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1',"SUPERTREND","DOCHIAN 10","BANDAS DE BOLLINGER"]
 #Indicador para o usuário selecionar
 Indicador = st.sidebar.selectbox('Escolha o indicador desejado :',indicadores)
 #Digitar o ativo desejado
@@ -66,7 +66,7 @@ def Operacoes(n,df):
 if ativo:
     #Carregando Data Frame
     ativo = ativo + str(".SA")
-    df = yf.download(ativo, period='30d')
+    df = yf.download(ativo, period='60d')
     #Setup IFR2
     if Indicador == indicadores[0]:
         df['IFR2'] = ta.rsi(df['Close'],length=2)
@@ -460,29 +460,14 @@ if ativo:
     #Stop Atr
     else:
             #Cálculo do indicador Open-Atr
-            high_low = df['High'] - df['Low']
-            high_close = np.abs(df['High'] - df['Close'].shift())
-            low_close = np.abs(df['Low'] - df['Close'].shift())
-            ranges = pd.concat([high_low, high_close, low_close], axis=1)
-            true_range = np.max(ranges, axis=1)
-            df['atr'] = (true_range.rolling(10).sum())/10.00
-            df['HL'] = (df['Low']+df['High'])/2.00
-            df['Stop_Atr_Upper'] = df['HL'] + 3*df['atr']
-            df['Stop_Atr_Donw'] = df['HL'] - 3*df['atr']
-            SuperTrend = []
-            for i in range(0,len(df)):
-                if df['Close'][i] < df['Stop_Atr_Upper'][i]:
-                    SuperTrend.append(df['Stop_Atr_Upper'][i])
-                elif df['Stop_Atr_Upper'][i] < df['Close'][i]:
-                    SuperTrend.append(df['Stop_Atr_Donw'][i])
-        
+            df['ST'] = ta.supertrend(df['High'],df['Low'],df['Close'],10,3)["SUPERTl_10_3.0"]
             def podeComprar(i,dados):
-                if (dados['Close'][i-1] < df['Stop_Atr_Upper'][i-2])and(df['Stop_Atr_Upper'][i-1]<dados['Close'][i]):
+                if (dados['Close'][i-1] <df['ST'][i-2])and(df['ST'][i-1]<dados['Close'][i]):
                     return True
                 return False
             #Definindo função para vender
             def podeVender(i,dados):
-                if (dados['Stop_Atr_Donw'][i-2]<dados['Close'][i-1]) and (dados['Close'][i] < dados['Stop_Atr_Donw'][i-1]):
+                if (dados['ST'][i-2]<dados['Close'][i-1]) and (dados['Close'][i] < dados['ST'][i-1]):
                     return True
                 return False
            
