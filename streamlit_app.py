@@ -492,7 +492,7 @@ if ativo:
             # Máxima dos 2 últimos dias
             trace2 = {
                 'x': df.index,
-                'y': ST,
+                'y': df['ST'],
                 'type': 'scatter',
                 'mode': 'lines',
                 'line': {
@@ -533,7 +533,7 @@ if ativo:
             # configurar o layout do gráfico
             layout = go.Layout({
                 'title': {
-                    'text': f'Gráfico STOP ATR {ativo}',
+                    'text': f'Gráfico SuperTrend {ativo}',
                     'font': {
                         'size': 20
                     }
