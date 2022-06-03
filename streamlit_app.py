@@ -459,21 +459,19 @@ if ativo:
     
     #Stop Atr
     else:
-            #Cálculo do indicador Open-Atr
-            
-       
-            ST_Low = ta.supertrend(df['High'],df['Low'],df['Close'],10,3)["SUPERTl_10_3.0"]
-            ST_High = ta.supertrend(df['High'],df['Low'],df['Close'],10,3)["SUPERTs_10_3.0"]
-            ST_Low = ST_Low.to_list()
-            ST_High = ST_High.to_list()
-            ST = ST_Low + ST_High
+            #Cálculo do indicador SuperTrend
+           
+            df['a'] = ta.supertrend(df['High'],df['Low'],df['Close'],10,3)["SUPERTl_10_3.0"]
+            df['b'] = ta.supertrend(df['High'],df['Low'],df['Close'],10,3)["SUPERTs_10_3.0"]
+            df.fillna(value = 0, inplace = True) 
+            df['ST'] = df['a'] + df['b']
             def podeComprar(i,dados):
-                if (dados['Close'][i-1] <df['ST'][i-2])and(df['ST'][i-1]<dados['Close'][i]):
+                if (dados['Close'][i-1] < df['ST'][i-2])and(df['ST'][i-1]<dados['Close'][i]):
                     return True
                 return False
             #Definindo função para vender
             def podeVender(i,dados):
-                if (dados['ST'][i-2]<dados['Close'][i-1]) and (dados['Close'][i] < dados['ST'][i-1]):
+                if (df['ST'][i-2]<dados['Close'][i-1]) and (dados['Close'][i] < df['ST'][i-1]):
                     return True
                 return False
            
