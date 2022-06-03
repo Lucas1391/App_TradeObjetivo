@@ -460,7 +460,13 @@ if ativo:
     #Stop Atr
     else:
             #Cálculo do indicador Open-Atr
-            df['ST'] = ta.supertrend(df['High'],df['Low'],df['Close'],10,3)["SUPERTl_10_3.0"]
+            
+       
+            ST_Low = ta.supertrend(df['High'],df['Low'],df['Close'],10,3)["SUPERTl_10_3.0"]
+            ST_High = ta.supertrend(df['High'],df['Low'],df['Close'],10,3)["SUPERTs_10_3.0"]
+            ST_Low = ST_Low.to_list()
+            ST_High = ST_High.to_list()
+            ST = ST_Low + ST_High
             def podeComprar(i,dados):
                 if (dados['Close'][i-1] <df['ST'][i-2])and(df['ST'][i-1]<dados['Close'][i]):
                     return True
@@ -488,7 +494,7 @@ if ativo:
             # Máxima dos 2 últimos dias
             trace2 = {
                 'x': df.index,
-                'y': df['ST'],
+                'y': ST,
                 'type': 'scatter',
                 'mode': 'lines',
                 'line': {
