@@ -13,7 +13,7 @@ image = Image.open("TRADE.png")
 #Abrindo logomarca no Streamlit
 #st.image(image,width=200)
 #Iniciando APP
-st.title("APP GRÁFICO TRADEOBJETIVO")
+st.title("APLICATIVO GRÁFICO TRADEOBJETIVO")
 #Indicadores disponíveis
 indicadores = ['IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1',"SUPERTREND","DOCHIAN 10","BANDAS DE BOLLINGER"]
 #Indicador para o usuário selecionar
