@@ -15,7 +15,13 @@ image = Image.open("TRADE.png")
 #Iniciando APP
 
 st.markdown("<h1 style='text-align: center; color: red;'>APLICATIVO GRÁFICO TRADER OBJETIVO</h1>",unsafe_allow_html=True)
-
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
 #Indicadores disponíveis
 indicadores = ['','IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1',"SUPERTREND","DOCHIAN 10","BANDAS DE BOLLINGER"]
