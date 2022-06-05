@@ -6,7 +6,6 @@ import yfinance as yf
 import plotly.graph_objects as go
 import pandas_ta as ta
 from PIL import Image
-from MODULOS import Operacoes,Trace_1,Trace_2,Trace_4
 
 #===========================================PROGRAMA AQUI=================================================
 #Carregando Logomarca
@@ -63,6 +62,52 @@ def Operacoes(n,df):
     df['Sell'] = lista_vendas
     return df
 
+#=======================================================================FUNÇOES GRÁFICAS=======================================================================
+def Trace_1(df,ativo):
+    #gráfico candlestick
+    trace1 = {
+            'x': df.index,
+            'open': df['Open'],
+            'close': df['Close'],
+            'high': df['High'],
+            'low': df['Low'],
+            'type': 'candlestick',
+            'name': f'{ativo}',
+            'showlegend': False
+        }
+    return trace1
+
+def Trace_2(df):
+#Sinal de Compra
+    trace3 = {
+            'x': df.index,
+            'y': df['Buy'],
+            'type': 'scatter',
+            'mode': 'markers + text',
+            'text': "Buy",
+            'line': {
+                'width':1,
+                'color': 'white'
+            },
+            'name': 'Buy'
+        }
+    return trace3
+
+def Trace_4(df):
+#Sinal de Venda
+    trace4 = {
+            'x': df.index,
+            'y': df['Sell'],
+            'type': 'scatter',
+            'mode': 'markers + text',
+            'text':"Sell",
+            'line': {
+                'width': 1,
+                'color': 'white'
+            },
+            'name': 'Sell'
+        }
+    return trace4
 #===================================================================================INICIO APLICATIVO============================================================
 if ativo:
     #Carregando Data Frame
