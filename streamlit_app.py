@@ -104,8 +104,8 @@ if ativo:
             'type': 'scatter',
             'mode': 'lines',
             'line': {
-                'width':2,
-                'color': 'white'
+                'width':1,
+                'color': 'blue'
             },
             'name': 'Highest2'
         }
@@ -332,7 +332,7 @@ if ativo:
                 'mode': 'lines',
                 'line': {
                     'width': 1,
-                    'color': 'black'
+                    'color': 'yellow'
                 },
                 'name': 'Highest 20'
             }
@@ -424,7 +424,7 @@ if ativo:
                 'mode': 'markers + text',
                 'text':"Buy",
                 'line': {
-                    'width': 2,
+                    'width': 1,
                     'color': 'white'
                 },
                 'name': 'Buy'
@@ -509,7 +509,7 @@ if ativo:
                 'mode': 'lines',
                 'line': {
                     'width': 2,
-                    'color': 'blue'
+                    'color': 'yellow'
                 },
                 'name': 'SUPERTREND UPPER'
             }
@@ -602,7 +602,7 @@ if ativo:
                 'mode': 'lines',
                 'line': {
                     'width': 1,
-                    'color': 'black'
+                    'color': 'yellow'
                 },
                 'name': 'Highest 10'
             }
