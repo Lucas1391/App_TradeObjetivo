@@ -57,7 +57,6 @@ def Operacoes(n,df):
             lista_vendas.append(df['Close'][j])
         else:
             lista_vendas.append(np.NaN)
-
     df['Buy'] = lista_compras
     df['Sell'] = lista_vendas
     return df
@@ -292,11 +291,11 @@ if ativo:
             df['Lowest 10'] = df['Low'].rolling(10).min()
             df['Lowest 10'] = df['Lowest 10'].shift(1)
             def podeComprar(indice, dados):
-                if (dados['Highest 20'][indice] < dados['Close'][indice]):
+                if (dados['Close'][indice-1]<dados['Highest 20'][indice-1])and(dados['Highest 20'][indice] < dados['Close'][indice]):
                     return True
                 return False
             #Definindo função para vender
-            def podeVender(indice, dados):
+            def podeVender(indice,dados):
                 if (dados['Close'][indice] < dados['Lowest 10'][indice]):
                     return True
                 return False
