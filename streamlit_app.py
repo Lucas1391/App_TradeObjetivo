@@ -15,7 +15,7 @@ image = Image.open("TRADE.png")
 #Iniciando APP
 st.title("APLICATIVO GRÁFICO TRADEOBJETIVO")
 #Indicadores disponíveis
-indicadores = ['IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1',"SUPERTREND","DOCHIAN 10","BANDAS DE BOLLINGER"]
+indicadores = ['','IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1',"SUPERTREND","DOCHIAN 10","BANDAS DE BOLLINGER"]
 #Indicador para o usuário selecionar
 Indicador = st.sidebar.selectbox('Escolha o indicador desejado :',indicadores)
 #Digitar o ativo desejado
@@ -66,9 +66,9 @@ def Operacoes(n,df):
 if ativo:
     #Carregando Data Frame
     ativo = ativo + str(".SA")
-    df = yf.download(ativo, period='60d')
+    df = yf.download(ativo, period='180d')
     #Setup IFR2
-    if Indicador == indicadores[0]:
+    if Indicador == indicadores[1]:
         df['IFR2'] = ta.rsi(df['Close'],length=2)
         df['Highest'] = df['High'].rolling(2).max()
         df['Highest'] = df['Highest'].shift(1)
@@ -190,7 +190,7 @@ if ativo:
         st.plotly_chart(fig_1,width=600, height=600)
  #===========================================================================================================================================================       
     #Média das 3 máximas e mínimas
-    elif Indicador == indicadores[1]:
+    elif Indicador == indicadores[2]:
         df['Avg_Low3'] = df['Low'].rolling(3).mean()
         df['Avg_Low3'] = df['Avg_Low3'].shift(1)
         df['Avg_High3'] = df['High'].rolling(3).mean()
@@ -284,7 +284,7 @@ if ativo:
         st.plotly_chart (fig,width = 300,height=300)
   #==============================================================================================================================================================
     #Setup Tutle 20-10
-    elif Indicador == indicadores[2]:
+    elif Indicador == indicadores[3]:
             df['Highest 20'] = df['High'].rolling(20).max()
             df['Highest 20'] = df['Highest 20'].shift(1)
             df['Lowest 10'] = df['Low'].rolling(10).min()
@@ -376,7 +376,7 @@ if ativo:
             # instanciar objeto Figure e plotar o gráfico
             fig = go.Figure(data=data, layout=layout)
             st.plotly_chart(fig, width=300, height=300)
-    elif Indicador == indicadores[3]:
+    elif Indicador == indicadores[4]:
             #Média de 9.1
             df['avg_exp 9'] = df['Close'].ewm(span=9, min_periods=9).mean()
             df['avg_exp 9'] = df['avg_exp 9'].shift(1)
@@ -459,7 +459,7 @@ if ativo:
   
     
     #SuperTrend
-    elif Indicador == indicadores[4]:
+    elif Indicador == indicadores[5]:
             #Cálculo do indicador SuperTrend
            
             df['L'] = ta.supertrend(df['High'],df['Low'],df['Close'],10,3)["SUPERTl_10_3.0"]
@@ -554,7 +554,7 @@ if ativo:
             # instanciar objeto Figure e plotar o gráfico
             fig = go.Figure(data=data, layout=layout)
             st.plotly_chart(fig, width=600, height=600)
-    elif Indicador == indicadores[5]:
+    elif Indicador == indicadores[6]:
             df['Highest 20'] = df['High'].rolling(10).max()
             df['Highest 20'] = df['Highest 20'].shift(1)
             df['Lowest 10'] = df['Low'].rolling(10).min()
