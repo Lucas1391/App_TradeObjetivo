@@ -14,10 +14,9 @@ image = Image.open("TRADE.png")
 #st.image(image,width=200)
 #Iniciando APP
 footer = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            </style>"""
+         {visibility: hidden;}
+          footer {visibility: hidden;}
+           """
 st.markdown("<h1 style='text-align: center; color: red;'>APLICATIVO GRÁFICO TRADER OBJETIVO</h1>",footer,unsafe_allow_html=True)
 
 
