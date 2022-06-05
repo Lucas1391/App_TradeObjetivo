@@ -12,8 +12,16 @@ from PIL import Image
 image = Image.open("TRADE.png")
 #Abrindo logomarca no Streamlit
 
-st.image(imagem,width=1920)
+col1, col2, col3 = st.beta_columns([1,6,1])
 
+with col1:
+st.write("")
+
+with col2:
+st.image(image)
+
+with col3:
+st.write("")
 
 #Iniciando APP
 st.markdown("<h1 style='text-align: center; color: red;'>APLICATIVO GRÁFICO TRADER OBJETIVO</h1>",unsafe_allow_html=True)
