@@ -115,7 +115,7 @@ if ativo:
             'y': df['Buy'],
             'type': 'scatter',
             'mode': 'markers + text',
-            'text': "↑",
+            'text': "Buy",
             'line': {
                 'width':1,
                 'color': 'white'
@@ -128,10 +128,10 @@ if ativo:
             'y': df['Sell'],
             'type': 'scatter',
             'mode': 'markers + text',
-            'text':"↓",
+            'text':"Sell",
             'line': {
                 'width': 1,
-                'color': 'blue'
+                'color': 'white'
             },
             'name': 'Sell'
         }
@@ -250,8 +250,8 @@ if ativo:
             'mode':  'markers + text',
             'text': 'Buy',
             'line': {
-                'width': 2,
-                'color': 'green'
+                'width': 1,
+                'color': 'white'
             },
             'name': 'Buy'
         }
@@ -263,8 +263,8 @@ if ativo:
             'mode':  'markers + text',
             'text':'Sell',
             'line': {
-                'width': 2,
-                'color':'blue'
+                'width': 1,
+                'color':'white'
             },
             'name': 'Sell'
         }
@@ -342,10 +342,10 @@ if ativo:
                 'y': df['Buy'],
                 'type': 'scatter',
                 'mode': 'markers + text',
-                'text':"↑",
+                'text':"Buy",
                 'line': {
                     'width': 1,
-                    'color': 'blue'
+                    'color': 'white'
                 },
                 'name': 'Buy'
             }
@@ -355,10 +355,10 @@ if ativo:
                 'y': df['Sell'],
                 'type': 'scatter',
                 'mode': 'markers + text',
-                'text':"↓",
+                'text':"Sell",
                 'line': {
                     'width': 1,
-                    'color': 'black'
+                    'color': 'white'
                 },
                 'name': 'Sell'
             }
@@ -422,10 +422,10 @@ if ativo:
                 'y': df['Buy'],
                 'type': 'scatter',
                 'mode': 'markers + text',
-                'text':"↑",
+                'text':"Buy",
                 'line': {
                     'width': 2,
-                    'color': 'black'
+                    'color': 'white'
                 },
                 'name': 'Buy'
             }
@@ -435,10 +435,10 @@ if ativo:
                 'y': df['Sell'],
                 'type': 'scatter',
                 'mode': 'markers + text',
-                'text':"↓",
+                'text':"Sell",
                 'line': {
-                    'width': 2,
-                    'color': 'blue'
+                    'width': 1,
+                    'color': 'white'
                 },
                 'name': 'Sell'
             }
@@ -519,10 +519,10 @@ if ativo:
                 'y': df['Buy'],
                 'type': 'scatter',
                 'mode': 'markers + text',
-                'text': "↑",
+                'text': "Buy",
                 'line': {
-                    'width': 2,
-                    'color': 'black'
+                    'width': 1,
+                    'color': 'white'
 
                 },
                 'name': 'Buy'
@@ -533,10 +533,10 @@ if ativo:
                 'y': df['Sell'],
                 'type': 'scatter',
                 'mode': 'markers + text',
-                'text':"↓",
+                'text':"Sell",
                 'line': {
-                    'width': 4,
-                    'color': 'blue'
+                    'width': 1,
+                    'color': 'white'
                 },
                 'name': 'Sell'
             }
@@ -612,10 +612,10 @@ if ativo:
                 'y': df['Buy'],
                 'type': 'scatter',
                 'mode': 'markers + text',
-                'text':"↑",
+                'text':"Buy",
                 'line': {
                     'width': 1,
-                    'color': 'blue'
+                    'color': 'white'
                 },
                 'name': 'Buy'
             }
@@ -625,10 +625,10 @@ if ativo:
                 'y': df['Sell'],
                 'type': 'scatter',
                 'mode': 'markers + text',
-                'text':"↓",
+                'text':"Sell",
                 'line': {
                     'width': 1,
-                    'color': 'black'
+                    'color': 'white'
                 },
                 'name': 'Sell'
             }
@@ -694,7 +694,7 @@ if ativo:
                 'y': df['Buy'],
                 'type': 'scatter',
                 'mode': 'markers + text',
-                'text':"↑",
+                'text':"Buy",
                 'line': {
                     'width': 1,
                     'color': 'blue'
@@ -707,7 +707,7 @@ if ativo:
                 'y': df['Sell'],
                 'type': 'scatter',
                 'mode': 'markers + text',
-                'text':"↓",
+                'text':"Sell",
                 'line': {
                     'width': 1,
                     'color': 'black'
