@@ -6,7 +6,6 @@ import yfinance as yf
 import plotly.graph_objects as go
 import pandas_ta as ta
 from PIL import Image
-from FORMATACAO
 
 #===========================================PROGRAMA AQUI=================================================
 #Carregando Logomarca
