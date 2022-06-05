@@ -14,7 +14,7 @@ image = Image.open("TRADE.png")
 #st.image(image,width=200)
 #Iniciando APP
 st.title("APLICATIVO GRÁFICO TRADER OBJETIVO")
-st.markdown('<style></style>',center; color: grey;',unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: grey;'>Big headline</h1>", unsafe_allow_html=True)
 
 
 #Indicadores disponíveis
