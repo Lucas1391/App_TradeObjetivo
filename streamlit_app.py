@@ -456,8 +456,7 @@ if ativo:
             # instanciar objeto Figure e plotar o gráfico
             fig = go.Figure(data=data, layout=layout)
             st.plotly_chart(fig, width=300, height=300)
-            
-    elif Indicador == indicadores[0]:
+  
     
     #Stop Atr
     else:
