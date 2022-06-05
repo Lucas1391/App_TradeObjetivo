@@ -63,8 +63,8 @@ def Operacoes(n,df):
     return df
 
 #=======================================================================FUNÇOES GRÁFICAS=======================================================================
- def Grafico(df,ativo):
-        trace1 = {
+def Grafico(df,ativo):
+    trace1 = {
             'x': df.index,
             'open': df['Open'],
             'close': df['Close'],
@@ -75,7 +75,7 @@ def Operacoes(n,df):
             'showlegend': False
             }
     #Sinal de Compra
-        trace2 = {
+    trace2 = {
             'x': df.index,
             'y': df['Buy'],
             'type': 'scatter',
@@ -87,8 +87,8 @@ def Operacoes(n,df):
             },
             'name': 'Buy'
         }
-        #Sinal de Venda
-        trace3 = {
+    #Sinal de Venda
+    trace3 = {
             'x': df.index,
             'y': df['Sell'],
             'type': 'scatter',
@@ -100,8 +100,8 @@ def Operacoes(n,df):
             },
             'name': 'Sell'
         }
-        lista = [trace1,trace2,trace3]
-        return
+    lista = [trace1,trace2,trace3]
+    return lista
         
 #===================================================================================INICIO APLICATIVO============================================================
 if ativo:
