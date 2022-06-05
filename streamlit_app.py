@@ -6,6 +6,7 @@ import yfinance as yf
 import plotly.graph_objects as go
 import pandas_ta as ta
 from PIL import Image
+from MODULOS import Operacoes,Trace_1,Trace_2,Trace_4
 
 #===========================================PROGRAMA AQUI=================================================
 #Carregando Logomarca
@@ -21,7 +22,7 @@ Indicador = st.sidebar.selectbox('Escolha o indicador desejado :',indicadores)
 #Digitar o ativo desejado
 ativo = st.sidebar.text_input("Digite o ativo desejado : ")
 #============================================================================FUNÇAO OPERAÇÕES========================================================================
-
+Operacoes = Operacoes(2,df)
 
 #===================================================================================INICIO APLICATIVO============================================================
 if ativo:
@@ -45,10 +46,11 @@ if ativo:
             return False
         
         ativo = ativo.replace(".SA","")
-        Operacoes(2,df)
+        
         df['parametro'] = 25.00
        
         #Máxima dos 2 últimos dias
+        trace1 = Trace_1(df,ativo)
         trace2 = {
             'x': df.index,
             'y':  df['Highest'],
@@ -60,7 +62,8 @@ if ativo:
             },
             'name': 'Highest2'
         }
-        
+        trace_3 = Trace_2(df)
+        trace4 = Trace_4(df):
         #informar todos os dados e gráficos em uma lista
         data = [trace1, trace2, trace3, trace4]
         #configurar o layout do gráfico
