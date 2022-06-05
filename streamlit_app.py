@@ -12,7 +12,7 @@ from PIL import Image
 image = Image.open("TRADE.png")
 #Abrindo logomarca no Streamlit
 
-col1, col2, col3 = st.beta_columns([1,6,1])
+col1, col2, col3 = st.columns(3)
 
 with col1:
     st.write("")
