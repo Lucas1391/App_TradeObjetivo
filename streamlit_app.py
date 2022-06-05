@@ -221,7 +221,7 @@ if ativo:
             'showlegend': False
             }
         #Mínima dos 3 ultimos dias
-        trace4 = {
+        trace2 = {
             'x': df.index,
             'y': df['Avg_Low3'] ,
             'type': 'scatter',
@@ -233,7 +233,7 @@ if ativo:
             'name': 'Média (3 Min)'
         }
         #Máxima dos 3 últimos dias
-        trace5 = {
+        trace3 = {
             'x': df.index,
             'y': df['Avg_High3'],
             'type': 'scatter',
