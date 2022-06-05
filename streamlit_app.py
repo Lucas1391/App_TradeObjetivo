@@ -27,7 +27,7 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 #Indicadores disponíveis
 indicadores = ['','IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1',"SUPERTREND","DOCHIAN 10","BANDAS DE BOLLINGER"]
 #Indicador para o usuário selecionar
-Indicador = st.sidebar.selectbox('Escolha o indicador desejado :',indicadores)
+Indicador = st.selectbox('Escolha o indicador desejado :',indicadores)
 #Digitar o ativo desejado
 ativo = st.sidebar.text_input("Digite o ativo desejado : ")
 #============================================================================FUNÇAO OPERAÇÕES========================================================================
