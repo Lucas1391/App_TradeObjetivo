@@ -14,7 +14,9 @@ image = Image.open("TRADE.png")
 #st.image(image,width=200)
 #Iniciando APP
 st.title("APLICATIVO GRÁFICO TRADEOBJETIVO")
-st.markdown('<style>h1{color: red;}</style>', unsafe_allow_html=True)
+with open("FORMATACAO.css") as f:
+    st.markdown('<style>h1{color: red;}</style>'.format(f.read()), unsafe_allow_html=True)
+
 
 #Indicadores disponíveis
 indicadores = ['','IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1',"SUPERTREND","DOCHIAN 10","BANDAS DE BOLLINGER"]
