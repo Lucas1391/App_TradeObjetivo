@@ -22,7 +22,6 @@ Indicador = st.sidebar.selectbox('Escolha o indicador desejado :',indicadores)
 #Digitar o ativo desejado
 ativo = st.sidebar.text_input("Digite o ativo desejado : ")
 #============================================================================FUNÇAO OPERAÇÕES========================================================================
-Operacoes = Operacoes(2,df)
 
 #===================================================================================INICIO APLICATIVO============================================================
 if ativo:
@@ -48,7 +47,7 @@ if ativo:
         ativo = ativo.replace(".SA","")
         
         df['parametro'] = 25.00
-       
+        Operacoes(2,df)
         #Máxima dos 2 últimos dias
         trace1 = Trace_1(df,ativo)
         trace2 = {
