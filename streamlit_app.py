@@ -697,7 +697,7 @@ if ativo:
                 'text':"Buy",
                 'line': {
                     'width': 1,
-                    'color': 'blue'
+                    'color': 'white'
                 },
                 'name': 'Buy'
             }
@@ -710,7 +710,7 @@ if ativo:
                 'text':"Sell",
                 'line': {
                     'width': 1,
-                    'color': 'black'
+                    'color': 'white'
                 },
                 'name': 'Sell'
             }
