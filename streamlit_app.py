@@ -11,7 +11,7 @@ from PIL import Image
 #Carregando Logomarca
 image = Image.open("TRADE.png")
 #Abrindo logomarca no Streamlit
-#st.image(image,width=200)
+st.image(image,width=200)
 #Iniciando APP
 
 st.markdown("<h1 style='text-align: center; color: red;'>APLICATIVO GRÁFICO TRADER OBJETIVO</h1>",unsafe_allow_html=True)
