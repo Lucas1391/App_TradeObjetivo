@@ -13,7 +13,7 @@ image = Image.open("TRADE.png")
 #Abrindo logomarca no Streamlit
 #st.image(image,width=200)
 #Iniciando APP
-
+st.title("APLICATIVO GRÁFICO TRADER OBJETIVO")
 st.markdown('<style></style>',style='text-align: center; color: grey;',unsafe_allow_html=True)
 
 
