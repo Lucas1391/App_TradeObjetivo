@@ -13,15 +13,8 @@ image = Image.open("TRADE.png")
 #Abrindo logomarca no Streamlit
 #st.image(image,width=200)
 #Iniciando APP
-title_alignment=
-"""
-<style>
-#APLICATIVO GRÁFICO TRADEOBJETIVO {
-  text-align: center
-}
-</style>
-"""
-st.markdown('<style></style>',title_alignment,unsafe_allow_html=True)
+
+st.markdown('<style></style>',style='text-align: center; color: grey;',unsafe_allow_html=True)
 
 
 #Indicadores disponíveis
