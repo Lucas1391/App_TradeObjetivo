@@ -12,7 +12,7 @@ from PIL import Image
 image = Image.open("TRADE.png")
 #Abrindo logomarca no Streamlit
 
-st.image(imagem,width=1000, height=1500)
+st.image(imagem,width=1920)
 
 
 #Iniciando APP
