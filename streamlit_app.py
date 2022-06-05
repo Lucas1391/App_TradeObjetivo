@@ -13,9 +13,15 @@ image = Image.open("TRADE.png")
 #Abrindo logomarca no Streamlit
 #st.image(image,width=200)
 #Iniciando APP
-st.title("APLICATIVO GRÁFICO TRADEOBJETIVO")
-with open("FORMATACAO.css") as f:
-    st.markdown('<style></style>'.format(f.read()), unsafe_allow_html=True)
+title_alignment=
+"""
+<style>
+#APLICATIVO GRÁFICO TRADEOBJETIVO {
+  text-align: center
+}
+</style>
+"""
+st.markdown('<style></style>',title_alignment,unsafe_allow_html=True)
 
 
 #Indicadores disponíveis
