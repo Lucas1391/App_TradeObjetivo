@@ -647,7 +647,7 @@ if ativo:
             fig = go.Figure(data=data, layout=layout)
             st.plotly_chart(fig, width=300, height=300)
            
-        else:
+    else:
             df['Standard Deviation'] = df['Close'].rolling(20).std()
             df['Middle Band'] = df['Adj Close'].rolling(20).mean()
             df['Upper Band'] = df['Middle Band'] + df['Standard Deviation'] * 2.00
