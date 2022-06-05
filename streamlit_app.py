@@ -29,7 +29,7 @@ indicadores = ['','IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1',"SUPERTREND"
 #Indicador para o usuário selecionar
 Indicador = st.selectbox('Escolha o indicador desejado :',indicadores)
 #Digitar o ativo desejado
-ativo = st.sidebar.text_input("Digite o ativo desejado : ")
+ativo = st.text_input("Digite o ativo desejado : ")
 #============================================================================FUNÇAO OPERAÇÕES========================================================================
 def Operacoes(n,df):
     resultado_compras = []
