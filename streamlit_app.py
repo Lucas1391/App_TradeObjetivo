@@ -291,7 +291,7 @@ if ativo:
             df['Lowest 10'] = df['Low'].rolling(10).min()
             df['Lowest 10'] = df['Lowest 10'].shift(1)
             def podeComprar(indice, dados):
-                if (dados['Close'][indice-1]<dados['Highest 20'][indice-1])and(dados['Highest 20'][indice] < dados['Close'][indice]):
+                if (dados['Highest 20'][indice] < dados['Close'][indice]):
                     return True
                 return False
             #Definindo função para vender
@@ -301,7 +301,7 @@ if ativo:
                 return False
             
             ativo = ativo.replace(".SA","")
-            Operacoes(20,df)
+            Operacoes(21,df)
             #Gráfico candlestick
             trace1 = {
                 'x': df.index,
