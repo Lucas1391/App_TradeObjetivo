@@ -248,7 +248,7 @@ if ativo:
             'y': df['Buy'],
             'type': 'scatter',
             'mode':  'markers + text',
-            'text': '↑',
+            'text': 'Buy',
             'line': {
                 'width': 2,
                 'color': 'green'
@@ -261,9 +261,9 @@ if ativo:
             'y': df['Sell'],
             'type': 'scatter',
             'mode':  'markers + text',
-            'text':'↓',
+            'text':'Sell',
             'line': {
-                'width': 1,
+                'width': 2,
                 'color':'blue'
             },
             'name': 'Sell'
@@ -458,21 +458,19 @@ if ativo:
             st.plotly_chart(fig, width=300, height=300)
   
     
-    #Stop Atr
-    else:
+    #SuperTrend
+    elif Indicador == indicadores[3]:
             #Cálculo do indicador SuperTrend
            
-            df['a'] = ta.supertrend(df['High'],df['Low'],df['Close'],10,3)["SUPERTl_10_3.0"]
-            df['b'] = ta.supertrend(df['High'],df['Low'],df['Close'],10,3)["SUPERTs_10_3.0"]
-            df.fillna(value = 0, inplace = True) 
-            df['ST'] = df['a'] + df['b']
+            df['L'] = ta.supertrend(df['High'],df['Low'],df['Close'],10,3)["SUPERTl_10_3.0"]
+            df['S'] = ta.supertrend(df['High'],df['Low'],df['Close'],10,3)["SUPERTs_10_3.0"]
             def podeComprar(i,dados):
-                if (dados['Close'][i-1] < df['ST'][i-2])and(df['ST'][i-1]<dados['Close'][i]):
+                if (dados['S'] [i-1]<dados['Close'][i]):
                     return True
                 return False
             #Definindo função para vender
             def podeVender(i,dados):
-                if (df['ST'][i-2]<dados['Close'][i-1]) and (dados['Close'][i] < df['ST'][i-1]):
+                if (dados['Close'][i] < dados['L'][i-1]):
                     return True
                 return False
            
@@ -490,20 +488,33 @@ if ativo:
                 'name': f'{ativo}',
                 'showlegend': False
             }
-            # Máxima dos 2 últimos dias
+            # SuperTrend Inferior
             trace2 = {
                 'x': df.index,
-                'y': df['ST'],
+                'y': df['L'],
                 'type': 'scatter',
                 'mode': 'lines',
                 'line': {
                     'width': 2,
                     'color': 'blue'
                 },
-                'name': 'SUPERTREND'
+                'name': 'SUPERTREND DOWN'
+            }
+            
+            # SuperTrend Superior
+            trace3 = {
+                'x': df.index,
+                'y': df['S'],
+                'type': 'scatter',
+                'mode': 'lines',
+                'line': {
+                    'width': 2,
+                    'color': 'blue'
+                },
+                'name': 'SUPERTREND UPPER'
             }
             # Sinal de Compra
-            trace3 = {
+            trace4 = {
                 'x': df.index,
                 'y': df['Buy'],
                 'type': 'scatter',
@@ -517,7 +528,7 @@ if ativo:
                 'name': 'Buy'
             }
             # Sinal de Venda
-            trace4 = {
+            trace5 = {
                 'x': df.index,
                 'y': df['Sell'],
                 'type': 'scatter',
@@ -530,7 +541,7 @@ if ativo:
                 'name': 'Sell'
             }
             # informar todos os dados e gráficos em uma lista
-            data = [trace1, trace2, trace3, trace4]
+            data = [trace1, trace2, trace3, trace4,trace5]
             # configurar o layout do gráfico
             layout = go.Layout({
                 'title': {
@@ -543,3 +554,181 @@ if ativo:
             # instanciar objeto Figure e plotar o gráfico
             fig = go.Figure(data=data, layout=layout)
             st.plotly_chart(fig, width=600, height=600)
+    elif Indicador == indicadores[5]:
+            df['Highest 20'] = df['High'].rolling(10).max()
+            df['Highest 20'] = df['Highest 20'].shift(1)
+            df['Lowest 10'] = df['Low'].rolling(10).min()
+            df['Lowest 10'] = df['Lowest 10'].shift(1)
+            def podeComprar(indice, dados):
+                if (dados['Highest 20'][indice] < dados['Close'][indice]):
+                    return True
+                return False
+            #Definindo função para vender
+            def podeVender(indice, dados):
+                if (dados['Close'][indice] < dados['Lowest 10'][indice]):
+                    return True
+                return False
+            
+            ativo = ativo.replace(".SA","")
+            Operacoes(10,df)
+            #Gráfico candlestick
+            trace1 = {
+                'x': df.index,
+                'open': df['Open'],
+                'close': df['Close'],
+                'high': df['High'],
+                'low': df['Low'],
+                'type': 'candlestick',
+                'name': f'{ativo}',
+                'showlegend': False
+            }
+            #Mínima dos 10 últimos dias
+            trace2 = {
+                'x': df.index,
+                'y': df['Lowest 10'],
+                'type': 'scatter',
+                'mode': 'lines',
+                'line': {
+                    'width': 1,
+                    'color': 'blue'
+                },
+                'name': 'Lowest 10'
+            }
+            #Máxima dos 20 últimos dias
+            trace3 = {
+                'x': df.index,
+                'y': df['Highest 20'],
+                'type': 'scatter',
+                'mode': 'lines',
+                'line': {
+                    'width': 1,
+                    'color': 'black'
+                },
+                'name': 'Highest 10'
+            }
+            #Sinal de Compra
+            trace4 = {
+                'x': df.index,
+                'y': df['Buy'],
+                'type': 'scatter',
+                'mode': 'markers + text',
+                'text':"↑",
+                'line': {
+                    'width': 1,
+                    'color': 'blue'
+                },
+                'name': 'Buy'
+            }
+            #Sinal de Venda
+            trace5 = {
+                'x': df.index,
+                'y': df['Sell'],
+                'type': 'scatter',
+                'mode': 'markers + text',
+                'text':"↓",
+                'line': {
+                    'width': 1,
+                    'color': 'black'
+                },
+                'name': 'Sell'
+            }
+            # informar todos os dados e gráficos em uma lista
+            data = [trace1, trace2, trace3, trace4, trace5]
+            # configurar o layout do gráfico
+            layout = go.Layout({
+                'title': {
+                    'text': f'Gráfico Dochian 10/10 {ativo}',
+                    'font': {
+                        'size': 20
+                    }
+                }
+            })
+            # instanciar objeto Figure e plotar o gráfico
+            fig = go.Figure(data=data, layout=layout)
+            st.plotly_chart(fig, width=300, height=300)
+           
+        elif Indicador == indicadores[6]:
+            df['Standard Deviation'] = df['Close'].rolling(20).std()
+            df['Middle Band'] = df['Adj Close'].rolling(20).mean()
+            df['Upper Band'] = df['Middle Band'] + df['Standard Deviation'] * 2.00
+            df['Lower Band'] = df['Middle Band'] - df['Standard Deviation'] * 2.00
+            def podeComprar(indice, dados):
+                if ( dados['Close'][indice]< df['Lower Band'][indice-1] <):
+                    return True
+                return False
+            #Definindo função para vender
+            def podeVender(indice, dados):
+                if (df['Lower Band'][indice-1] < dados['Close'][indice]):
+                    return True
+                return False
+            
+            ativo = ativo.replace(".SA","")
+            Operacoes(10,df)
+            #Gráfico candlestick
+            trace1 = {
+                'x': df.index,
+                'open': df['Open'],
+                'close': df['Close'],
+                'high': df['High'],
+                'low': df['Low'],
+                'type': 'candlestick',
+                'name': f'{ativo}',
+                'showlegend': False
+            }
+            #Mínima dos 10 últimos dias
+            trace2 = {
+                'x': df.index,
+                'y': df['Lower Band'],
+                'type': 'scatter',
+                'mode': 'lines',
+                'line': {
+                    'width': 1,
+                    'color': 'blue'
+                },
+                'name': 'Banda Upper'
+            }
+           
+            #Sinal de Compra
+            trace3 = {
+                'x': df.index,
+                'y': df['Buy'],
+                'type': 'scatter',
+                'mode': 'markers + text',
+                'text':"↑",
+                'line': {
+                    'width': 1,
+                    'color': 'blue'
+                },
+                'name': 'Buy'
+            }
+            #Sinal de Venda
+            trace4 = {
+                'x': df.index,
+                'y': df['Sell'],
+                'type': 'scatter',
+                'mode': 'markers + text',
+                'text':"↓",
+                'line': {
+                    'width': 1,
+                    'color': 'black'
+                },
+                'name': 'Sell'
+            }
+            # informar todos os dados e gráficos em uma lista
+            data = [trace1, trace2, trace3, trace4]
+            # configurar o layout do gráfico
+            layout = go.Layout({
+                'title': {
+                    'text': f'Gráfico Bandas de Bollinger {ativo}',
+                    'font': {
+                        'size': 20
+                    }
+                }
+            })
+            # instanciar objeto Figure e plotar o gráfico
+            fig = go.Figure(data=data, layout=layout)
+            st.plotly_chart(fig, width=300, height=300)
+            
+            
+    
+    
