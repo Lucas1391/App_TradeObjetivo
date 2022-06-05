@@ -653,7 +653,7 @@ if ativo:
             df['Upper Band'] = df['Middle Band'] + df['Standard Deviation'] * 2.00
             df['Lower Band'] = df['Middle Band'] - df['Standard Deviation'] * 2.00
             def podeComprar(indice, dados):
-                if ( dados['Close'][indice]< df['Lower Band'][indice-1] <):
+                if (dados['Close'][indice]< df['Lower Band'][indice-1]):
                     return True
                 return False
             #Definindo função para vender
