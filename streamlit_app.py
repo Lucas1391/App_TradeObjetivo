@@ -63,7 +63,7 @@ if ativo:
             'name': 'Highest2'
         }
         trace_3 = Trace_2(df)
-        trace4 = Trace_4(df):
+        trace4 = Trace_4(df)
         #informar todos os dados e gráficos em uma lista
         data = [trace1, trace2, trace3, trace4]
         #configurar o layout do gráfico
