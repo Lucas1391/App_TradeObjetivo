@@ -209,10 +209,6 @@ if ativo:
         
         ativo = ativo.replace(".SA","")
         Operacoes(3,df)
-        grafico = Grafico(df,ativo)
-        trace1 = grafico[0]
-        trace1 = grafico[1]
-        trace1 = grafico[2]
         #gráfico candlestick
         trace1 = {
             'x': df.index,
