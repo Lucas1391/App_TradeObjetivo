@@ -15,6 +15,9 @@ image = Image.open("TRADE.png")
 #Iniciando APP
 st.title("APLICATIVO GRÁFICO TRADEOBJETIVO")
 st.markdown('<style>h1{color: red;}</style>', unsafe_allow_html=True)
+footer = {
+            visibility:hidden;
+            }
 #Indicadores disponíveis
 indicadores = ['','IFR2','MEDIA3-MAX&MIN','TUTLE 20/10','SETUP 9.1',"SUPERTREND","DOCHIAN 10","BANDAS DE BOLLINGER"]
 #Indicador para o usuário selecionar
