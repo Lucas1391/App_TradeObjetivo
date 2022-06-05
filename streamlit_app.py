@@ -63,51 +63,7 @@ def Operacoes(n,df):
     return df
 
 #=======================================================================FUNÇOES GRÁFICAS=======================================================================
-def Trace_1(df,ativo):
-    #gráfico candlestick
-    trace1 = {
-            'x': df.index,
-            'open': df['Open'],
-            'close': df['Close'],
-            'high': df['High'],
-            'low': df['Low'],
-            'type': 'candlestick',
-            'name': f'{ativo}',
-            'showlegend': False
-        }
-    return trace1
 
-def Trace_2(df):
-#Sinal de Compra
-    trace3 = {
-            'x': df.index,
-            'y': df['Buy'],
-            'type': 'scatter',
-            'mode': 'markers + text',
-            'text': "Buy",
-            'line': {
-                'width':1,
-                'color': 'white'
-            },
-            'name': 'Buy'
-        }
-    return trace3
-
-def Trace_4(df):
-#Sinal de Venda
-    trace4 = {
-            'x': df.index,
-            'y': df['Sell'],
-            'type': 'scatter',
-            'mode': 'markers + text',
-            'text':"Sell",
-            'line': {
-                'width': 1,
-                'color': 'white'
-            },
-            'name': 'Sell'
-        }
-    return trace4
 #===================================================================================INICIO APLICATIVO============================================================
 if ativo:
     #Carregando Data Frame
@@ -130,12 +86,22 @@ if ativo:
             return False
         
         ativo = ativo.replace(".SA","")
-        
         df['parametro'] = 25.00
         Operacoes(2,df)
         #Máxima dos 2 últimos dias
-        trace1 = Trace_1(df,ativo)
-        trace2 = {
+        #gráfico candlestick
+        trace1 = {
+            'x': df.index,
+            'open': df['Open'],
+            'close': df['Close'],
+            'high': df['High'],
+            'low': df['Low'],
+            'type': 'candlestick',
+            'name': f'{ativo}',
+            'showlegend': False
+            }
+        
+        trace4 = {
             'x': df.index,
             'y':  df['Highest'],
             'type': 'scatter',
@@ -146,14 +112,38 @@ if ativo:
             },
             'name': 'Highest2'
         }
-        trace_3 = Trace_2(df)
-        trace4 = Trace_4(df)
+         #Sinal de Compra
+        trace2 = {
+            'x': df.index,
+            'y': df['Buy'],
+            'type': 'scatter',
+            'mode':  'markers + text',
+            'text': 'Buy',
+            'line': {
+                'width': 1,
+                'color': 'white'
+            },
+            'name': 'Buy'
+        }
+        #Sinal de Venda
+        trace3 = {
+            'x': df.index,
+            'y': df['Sell'],
+            'type': 'scatter',
+            'mode':  'markers + text',
+            'text':'Sell',
+            'line': {
+                'width': 1,
+                'color':'white'
+            },
+            'name': 'Sell'
+        }
         #informar todos os dados e gráficos em uma lista
         data = [trace1, trace2, trace3, trace4]
         #configurar o layout do gráfico
         layout = go.Layout({
             'title': {
-                'text': f'Gráfico IFR2 {ativo}',
+                'text': f'Gráfico3FR2 {ativo}',
                 'font': {
                     'size': 20
                 }
@@ -220,8 +210,8 @@ if ativo:
         
         ativo = ativo.replace(".SA","")
         Operacoes(3,df)
-        # gráfico candlestick
-        trace1 = {
+        #gráfico candlestick
+        """trace1 = {
             'x': df.index,
             'open': df['Open'],
             'close': df['Close'],
@@ -230,9 +220,9 @@ if ativo:
             'type': 'candlestick',
             'name': f'{ativo}',
             'showlegend': False
-            }
+            }"""
         #Mínima dos 3 ultimos dias
-        trace2 = {
+        trace4 = {
             'x': df.index,
             'y': df['Avg_Low3'] ,
             'type': 'scatter',
@@ -244,7 +234,7 @@ if ativo:
             'name': 'Média (3 Min)'
         }
         #Máxima dos 3 últimos dias
-        trace3 = {
+        trace5 = {
             'x': df.index,
             'y': df['Avg_High3'],
             'type': 'scatter',
@@ -255,7 +245,7 @@ if ativo:
             },
             'name': 'Média (3 Max)'
         }
-        #Sinal de Compra
+        """#Sinal de Compra
         trace4 = {
             'x': df.index,
             'y': df['Buy'],
@@ -280,7 +270,7 @@ if ativo:
                 'color':'white'
             },
             'name': 'Sell'
-        }
+        }"""
         #informar todos os dados e gráficos em uma lista
         data = [trace1,trace2,trace3,trace4,trace5]
         # configurar o layout do gráfico
