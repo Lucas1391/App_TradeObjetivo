@@ -15,7 +15,7 @@ image = Image.open("TRADE.png")
 #Iniciando APP
 st.title("APLICATIVO GRÁFICO TRADEOBJETIVO")
 with open("FORMATACAO.css") as f:
-    st.markdown('<style>h1{color: red;}</style>'.format(f.read()), unsafe_allow_html=True)
+    st.markdown('<style></style>'.format(f.read()), unsafe_allow_html=True)
 
 
 #Indicadores disponíveis
