@@ -66,7 +66,7 @@ def Operacoes(n,df):
 if ativo:
     #Carregando Data Frame
     ativo = ativo + str(".SA")
-    df = yf.download(ativo, period='90d')
+    df = yf.download(ativo, period='60d')
     #Setup IFR2
     if Indicador == indicadores[1]:
         df['IFR2'] = ta.rsi(df['Close'],length=2)
