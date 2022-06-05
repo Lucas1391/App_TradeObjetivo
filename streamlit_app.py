@@ -22,6 +22,7 @@ Indicador = st.sidebar.selectbox('Escolha o indicador desejado :',indicadores)
 ativo = st.sidebar.text_input("Digite o ativo desejado : ")
 #============================================================================FUNÇAO OPERAÇÕES========================================================================
 
+
 #===================================================================================INICIO APLICATIVO============================================================
 if ativo:
     #Carregando Data Frame
@@ -46,17 +47,7 @@ if ativo:
         ativo = ativo.replace(".SA","")
         Operacoes(2,df)
         df['parametro'] = 25.00
-        #gráfico candlestick
-        trace1 = {
-            'x': df.index,
-            'open': df['Open'],
-            'close': df['Close'],
-            'high': df['High'],
-            'low': df['Low'],
-            'type': 'candlestick',
-            'name': f'{ativo}',
-            'showlegend': False
-        }
+       
         #Máxima dos 2 últimos dias
         trace2 = {
             'x': df.index,
@@ -69,32 +60,7 @@ if ativo:
             },
             'name': 'Highest2'
         }
-        #Sinal de Compra
-        trace3 = {
-            'x': df.index,
-            'y': df['Buy'],
-            'type': 'scatter',
-            'mode': 'markers + text',
-            'text': "Buy",
-            'line': {
-                'width':1,
-                'color': 'white'
-            },
-            'name': 'Buy'
-        }
-        #Sinal de Venda
-        trace4 = {
-            'x': df.index,
-            'y': df['Sell'],
-            'type': 'scatter',
-            'mode': 'markers + text',
-            'text':"Sell",
-            'line': {
-                'width': 1,
-                'color': 'white'
-            },
-            'name': 'Sell'
-        }
+        
         #informar todos os dados e gráficos em uma lista
         data = [trace1, trace2, trace3, trace4]
         #configurar o layout do gráfico
