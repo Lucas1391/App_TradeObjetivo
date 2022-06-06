@@ -100,7 +100,7 @@ if ativo:
             return False
           #Definindo função para vender
         def podeVender(i,df):
-            if (df['Highest'][i] < df['Close'][i]):
+            if (df['Highest'][i] < df['High'][i]):
                 return True
             return False
         
@@ -162,7 +162,7 @@ if ativo:
         #configurar o layout do gráfico
         layout = go.Layout({
             'title': {
-                'text': f'Gráfico3FR2 {ativo}',
+                'text': f'Gráfico IFR2 {ativo}',
                 'font': {
                     'size': 20
                 }
